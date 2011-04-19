@@ -1,3 +1,5 @@
+% !TEX TS-program = pdflatexmk
+
 %
 % LaTeX Template
 %
@@ -25,7 +27,12 @@
     University of }
 
 
+\PassOptionsToPackage{final}{hyperref} % Gives hyperlinks even in draft mode (draft needed for todos)
+%\PassOptionsToPackage{final,\hyperoptions hyperfootnotes=false,linktoc=all,pagebackref}{hyperref}
+
 \input{includes/preamble}
+
+\input{includes/setupFIXme} % todos etc -- or use setupTodo, setupTodonotes
 
 
 %-----------------------------------------------------------------------
@@ -100,13 +107,15 @@
 \bibliography{eddbib}		% expects file "eddbib.bib"
 
 
-%% To create indexes for TODOs etc, need to run these makeindex commands after LaTeXing:
-%% makeindex -o file.tnd file.tod
-%% makeindex -o file.fnd file.fix
-%% makeindex -o file.cnd file.chg
+%-----------------------------------------------------------------------
+% List fixups, corrections, todos etc in drafts
+%-----------------------------------------------------------------------
 
-%\printindex[todo]
-%\printindex[fixme]
-%\printindex[changed]
+%\renewcommand{\todoname}{List of Fixups} %for todo package
+%\todos % for todo package
+%\listoftodos % for todonotes package
+\renewcommand{\englishlistfixmename}{List of Notes and Todos} % change from the default
+\listoffixmes  % only draft mode
+
 
 \end{document}
